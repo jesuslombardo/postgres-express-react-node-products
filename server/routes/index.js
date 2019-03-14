@@ -1,5 +1,6 @@
 const categoriesController = require('../controllers').categories;
 const productsController = require('../controllers').products;
+const pivotController = require('../controllers').pivot;
 
 module.exports = (app) => {
   app.get('/', (req, res) => res.status(200).send({
@@ -7,6 +8,8 @@ module.exports = (app) => {
   }));
 
   //////////PRODUCT//////
+
+
   //getting category list
   app.get('/products', productsController.list);
 
@@ -40,5 +43,11 @@ module.exports = (app) => {
   app.delete('/categories/:categoryId', categoriesController.destroy);
 
 
+
+  //creating pivot table
+  app.post('/pivot',pivotController.create);
+
+  //get pivot table
+  app.get('/pivot',pivotController.list);
 
 };

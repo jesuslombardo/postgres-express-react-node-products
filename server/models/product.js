@@ -17,10 +17,6 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
-    categoryId: {
-      type: DataTypes.INTEGER,
-      allowNull: false,
-    },
   /*}
   , {
       hooks: {
@@ -43,14 +39,23 @@ module.exports = (sequelize, DataTypes) => {
       },*/
   });
 
+  /*
   Product.associate = (models) => {
     Product.belongsTo(models.Category, {
       foreignKey: 'categoryId',
       onDelete: 'CASCADE',
     });
   };
+  */
 
-
+ Product.associate = (models) => {
+  Product.belongsToMany(models.Category, {
+      through: 'CategoryProduct',
+      as: 'categories',
+      foreignKey: 'productId',
+      otherKey: 'categoryId'
+    });
+  };
 
   return Product;
 };

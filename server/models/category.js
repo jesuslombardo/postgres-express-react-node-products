@@ -6,12 +6,25 @@ module.exports = (sequelize, DataTypes) => {
     },
   });
 
+  /*
   Category.associate = (models) => {
     Category.hasMany(models.Product, {
       foreignKey: 'categoryId',
       as: 'products',
     });
   };
+  */
+  
+ Category.associate = (models) => {
+  Category.belongsToMany(models.Product, {
+      through: 'CategoryProduct',
+      as: 'products',
+      foreignKey: 'categoryId',
+      otherKey: 'productId'
+    });
+  };
 
+
+  
   return Category;
 };

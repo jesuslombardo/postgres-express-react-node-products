@@ -1,13 +1,3 @@
-/*'use strict';
-module.exports = (sequelize, DataTypes) => {
-  const Product = sequelize.define('Product', {
-    name: DataTypes.STRING
-  }, {});
-  Product.associate = function(models) {
-    // associations can be defined here
-  };
-  return Product;
-};*/
 module.exports = (sequelize, DataTypes) => {
   const Product = sequelize.define('Product', 
   {
@@ -26,8 +16,12 @@ module.exports = (sequelize, DataTypes) => {
     available: {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
-    }
-  }
+    },
+    categoryId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+  /*}
   , {
       hooks: {
         beforeCreate: (product) => {
@@ -46,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
             // The value of myTruncatedString is "ABC"
             return myTruncatedString
           }
-      },
+      },*/
   });
 
   Product.associate = (models) => {
@@ -55,6 +49,8 @@ module.exports = (sequelize, DataTypes) => {
       onDelete: 'CASCADE',
     });
   };
+
+
 
   return Product;
 };

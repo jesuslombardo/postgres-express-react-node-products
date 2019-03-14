@@ -2,33 +2,43 @@ const categoriesController = require('../controllers').categories;
 const productsController = require('../controllers').products;
 
 module.exports = (app) => {
-  app.get('/api', (req, res) => res.status(200).send({
+  app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to the Products API!',
   }));
 
-
-  app.get('/api/categories', categoriesController.list);
-  app.post('/api/categories', categoriesController.create);
-  app.get('/api/categories/:categoryId', categoriesController.retrieve);
-  app.put('/api/categories/:categoryId', categoriesController.update);
-  app.delete('/api/categories/:categoryId', categoriesController.destroy);
-  
-
-  app.post('/api/categories/:categoryId/items', productsController.create);
-  app.put('/api/categories/:categoryId/items/:productId', productsController.update);
-  app.delete(
-    '/api/categories/:categoryId/items/:productId', productsController.destroy
-  );
-
-  
-
-
+  //////////PRODUCT//////
+  //getting category list
   app.get('/products', productsController.list);
-  
-  // For any other request method on todo items
-  app.all('/api/categories/:categoryId/items', (req, res) =>
-    res.status(405).send({
-      message: 'Method Not Allowed',
-  }));
+
+  //find product by id
+  app.get('/products/:productId', productsController.retrieve);
+
+  //creating new product
+  app.post('/products', productsController.create);
+
+  //updating product by id
+  app.put('/products/:productId', productsController.update);
+
+  //deleting product by id
+  app.delete('/products/:productId', productsController.destroy);
+
+
+  //////////CATEGORY//////
+  //getting category list
+  app.get('/categories', categoriesController.list);
+
+  //find category by id
+  app.get('/categories/:categoryId', categoriesController.retrieve);
+
+  //creating new category
+  app.post('/categories', categoriesController.create);
+
+  //updating category by id
+  app.put('/categories/:categoryId', categoriesController.update);
+
+  //delete a category by id
+  app.delete('/categories/:categoryId', categoriesController.destroy);
+
+
 
 };

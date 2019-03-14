@@ -1,3 +1,4 @@
+const Category = require('../models').Category;
 const Product = require('../models').Product;
 
 module.exports = {
@@ -5,7 +6,10 @@ module.exports = {
     return Product
       .create({
         name: req.body.name,
-        categoryId: req.params.categoryId,
+        price: req.body.price,
+        description: req.body.description,
+        available: req.body.available,
+        categoryId: req.body.categoryId,
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
@@ -13,17 +17,22 @@ module.exports = {
 
   list(req, res) {
     return Product
-      .findAll({
-        include: [{
-          model: Product,
-          as: 'products',
-        }],
-        order: [
-          ['createdAt', 'DESC'],
-          [{ model: Product, as: 'products' }, 'createdAt', 'ASC'],
-        ],
+      .findAll()
+      .then((categories) => res.status(200).send(categories))
+      .catch((error) => res.status(400).send(error));
+  },
+
+  retrieve(req, res) {
+    return Product
+      .findByPk(req.params.productId)
+      .then((product) => {
+        if (!product) {
+          return res.status(404).send({
+            message: 'product Not Found',
+          });
+        }
+        return res.status(200).send(product);
       })
-      .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
   },
 
@@ -32,7 +41,6 @@ module.exports = {
       .findOne({
           where: {
             id: req.params.productId,
-            categoryId: req.params.categoryId,
           },
         })
       .then(product => {
@@ -48,6 +56,7 @@ module.exports = {
             price: req.body.price || product.price,
             description: req.body.description || product.description,
             available: req.body.available || product.available,
+            categoryId: req.body.categoryId || product.categoryId,
           })
           .then(updatedProduct => res.status(200).send(updatedProduct))
           .catch(error => res.status(400).send(error));
@@ -55,14 +64,12 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
-
   
   destroy(req, res) {
     return Product
       .findOne({
           where: {
             id: req.params.productId,
-            categoryId: req.params.categoryId,
           },
         })
       .then(product => {

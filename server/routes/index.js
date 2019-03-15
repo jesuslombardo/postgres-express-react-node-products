@@ -10,6 +10,9 @@ module.exports = (app) => {
   //////////PRODUCT//////
 
 
+  //products?categories=books,movies
+  //app.get('/products?categories=:categories', productsController.test);
+
   //getting category list
   app.get('/products', productsController.list);
 

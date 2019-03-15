@@ -17,36 +17,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
-  /*}
-  , {
-      hooks: {
-        beforeCreate: (product) => {
-          let currency_ar = product.price.includes("ARS");
-          let currency_change = 40;
-          currency_ar ? product.price*currency_change : product.price 
-        }
-      }
-    }
-  , {
-      truncateDescription: {
-          shortDescription: function () {
-            let length = 20;
-            let myString = this.getDataValue('description');
-            let myTruncatedString = myString.substring(0,length) + "...";
-            // The value of myTruncatedString is "ABC"
-            return myTruncatedString
-          }
-      },*/
   });
-
-  /*
-  Product.associate = (models) => {
-    Product.belongsTo(models.Category, {
-      foreignKey: 'categoryId',
-      onDelete: 'CASCADE',
-    });
-  };
-  */
 
  Product.associate = (models) => {
   Product.belongsToMany(models.Category, {
@@ -56,6 +27,20 @@ module.exports = (sequelize, DataTypes) => {
       otherKey: 'categoryId'
     });
   };
+
+  // instance methods 
+  Product.prototype.truncateDescription = function() {
+    let desc = this.description;
+    return desc.length > 20 ? desc.substr(0,20) + "..." : desc;
+  }
+
+  Product.beforeCreate((product) => {
+    let currency_ar = product.price.includes("ARS");
+    let currency_change = 40;
+    currency_ar ? product.price*currency_change : product.price 
+  })  
+
+
 
   return Product;
 };

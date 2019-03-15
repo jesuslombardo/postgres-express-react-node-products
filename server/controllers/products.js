@@ -1,8 +1,11 @@
 const Category = require('../models').Category;
 const Product = require('../models').Product;
 const CategoryProduct = require('../models').CategoryProduct;
+const Sequelize = require('sequelize');
+const op = Sequelize.Op;
 
 module.exports = {
+
 
   create(req, res) {
     return Product
@@ -17,31 +20,38 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
-  list(req, res) {
+
+
+  list(req, res) {    
+    // this looks if there is some query string and depends of that build the where Statement
+    let whereStatement = {} 
+    if(Object.keys(req.query).length > 0){
+      let queryCategories = req.query.categories.toString().split(",")
+      whereStatement = {name: {
+        [op.or]: queryCategories
+      }};
+    }
+
     return Product
       .findAll({
+        
         include: [{
           model: Category,
           as: 'categories',
-          required: false,
-          attributes: ['id', 'name'],
+          required: true, //filtra
+          where: whereStatement,
           through: {
             // This block of code allows you to retrieve the properties of the join table
             model: CategoryProduct,
-          }
-        }],
+          },
+        },
+        
+      ],
       })
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
-  },
 
-  /*
-  list(req, res) {
-    return Product
-      .findAll()
-      .then((categories) => res.status(200).send(categories))
-      .catch((error) => res.status(400).send(error));
-  },*/
+  },
 
   retrieve(req, res) {
     return Product
@@ -52,14 +62,16 @@ module.exports = {
             message: 'product Not Found',
           });
         }
+     
+        //example using truncateDescription
+        //const truncateDesc = product.truncateDescription()
+        //product.description = truncateDesc
+        
         return res.status(200).send(product);
+        
       })
       .catch((error) => res.status(400).send(error));
   },
-
- 
-
- 
 
 
   update(req, res) {

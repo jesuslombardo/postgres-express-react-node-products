@@ -1,4 +1,4 @@
-
+<pre>
 API: https://backend-test-p5.herokuapp.com/
 
 
@@ -54,3 +54,4 @@ Debería traer solo los productos que tengan la categoría book o movies
 
 Usar tests para demostrar que los requerimientos funcionan
 ========== EJERCICIO ===========
+</pre>

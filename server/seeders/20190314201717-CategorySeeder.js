@@ -19,6 +19,14 @@ module.exports = {
         id: 4,
         name: 'BlackFriday',
       },
+      {
+        id: 5,
+        name: 'Books',
+      },
+      {
+        id: 6,
+        name: 'Movies',
+      },
 
   ], {});
   },

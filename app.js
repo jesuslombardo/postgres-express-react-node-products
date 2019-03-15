@@ -1,5 +1,4 @@
-return "hola";
-/*
+
 const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
@@ -23,4 +22,3 @@ app.get('*', (req, res) => res.status(200).send({
 }));
 
 module.exports = app;
-*/

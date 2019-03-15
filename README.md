@@ -1,4 +1,22 @@
-==== EJERCICIO ====
+
+API: https://backend-test-p5.herokuapp.com/
+
+
+PRODUCTS
+GET /products
+GET /products/:id
+POST /products
+PUT /products/:id
+DELETE /products/:id
+
+CATEGORIES
+GET /categories
+GET /categories/:id
+POST /categories
+PUT /categories/:id
+DELETE /categories/:id
+
+========== EJERCICIO ===========
 Hacer una RESTful API usando Node, Express y Sequelize (Postgres)
 
 Vamos a tener una API de Productos y Categorias. 
@@ -34,5 +52,5 @@ GET /products?categories=books,movies
 
 Debería traer solo los productos que tengan la categoría book o movies
 
-
 Usar tests para demostrar que los requerimientos funcionan
+========== EJERCICIO ===========

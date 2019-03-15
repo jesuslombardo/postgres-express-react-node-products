@@ -3,8 +3,6 @@ const Product = require('../models').Product;
 const CategoryProduct = require('../models').CategoryProduct;
 
 module.exports = {
-
-
     list(req, res) {
       return Category
         .findAll({
@@ -23,7 +21,6 @@ module.exports = {
         .catch((error) => res.status(400).send(error));
     },
 
-   
   create(req, res) {
     return Category
       .create({
@@ -32,12 +29,6 @@ module.exports = {
       .then(category => res.status(201).send(category))
       .catch(error => res.status(400).send(error));
   },
-
-
-
-  
-
-
 
   retrieve(req, res) {
     return Category
@@ -57,6 +48,7 @@ module.exports = {
       })
       .catch((error) => res.status(400).send(error));
   },
+
   update(req, res) {
     return Category
       .findByPk(req.params.categoryId, {
@@ -80,6 +72,7 @@ module.exports = {
       })
       .catch((error) => res.status(400).send(error));
   },
+  
   destroy(req, res) {
     return Category
       .findByPk(req.params.categoryId)

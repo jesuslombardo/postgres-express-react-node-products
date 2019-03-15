@@ -9,9 +9,6 @@ module.exports = (app) => {
 
   //////////PRODUCT//////
 
-  //products?categories=books,movies
-  //app.get('/products?categories=:categories', productsController.test);
-
   //getting category list
   app.get('/products', productsController.list);
 
@@ -26,7 +23,6 @@ module.exports = (app) => {
 
   //deleting product by id
   app.delete('/products/:productId', productsController.destroy);
-
 
   //////////CATEGORY//////
   //getting category list
@@ -43,8 +39,6 @@ module.exports = (app) => {
 
   //delete a category by id
   app.delete('/categories/:categoryId', categoriesController.destroy);
-
-
 
   //creating pivot table
   app.post('/pivot',pivotController.create);

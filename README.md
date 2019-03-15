@@ -1,7 +1,23 @@
 <pre>
-API: https://backend-test-p5.herokuapp.com/
+<h1>API: <a href="https://backend-test-p5.herokuapp.com/">https://backend-test-p5.herokuapp.com/</a></h1>
+
+///////// Examples /////////
+https://backend-test-p5.herokuapp.com/products
+https://backend-test-p5.herokuapp.com/products?categories=Books,Movies
+https://backend-test-p5.herokuapp.com/categories
 
 
+POST https://backend-test-p5.herokuapp.com/categories
+	key: name | value: Toys
+
+POST https://backend-test-p5.herokuapp.com/products
+	key: name | value: Woody
+	key: price | value: 700
+	key: description | value: Eres mi alguacil preferido
+	key: available | value: true
+
+
+//////////  CRUD /////////
 PRODUCTS
 GET /products
 GET /products/:id
@@ -15,6 +31,7 @@ GET /categories/:id
 POST /categories
 PUT /categories/:id
 DELETE /categories/:id
+/////////
 
 ========== EJERCICIO ===========
 Hacer una RESTful API usando Node, Express y Sequelize (Postgres)

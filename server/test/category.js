@@ -4,6 +4,8 @@ const Category = require('../models').Category;
 const chai = require('chai');
 const chaiHttp = require('chai-http');
 const app = require('../../app');
+const should = require('should');
+
 
 const should = chai.should();
 

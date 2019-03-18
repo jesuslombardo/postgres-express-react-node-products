@@ -6,8 +6,10 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "mocha ./server/test/category.js --reporter spec"
+    "test": "find ./server/test -name '*spec.js' | xargs mocha --require ./server/test/test_helper.js"
   },
+
+  
   "keywords": [],
   "author": "",
   "license": "ISC",
@@ -20,12 +22,15 @@
     "pg": "^7.8.2",
     "pg-hstore": "^2.3.2",
     "sequelize": "^5.1.0",
-    "sequelize-heroku": "^2.0.0"
+    "sequelize-heroku": "^2.0.0",
+    "sinon": "^7.2.7",
+    "sinon-chai": "^3.3.0"
   },
   "devDependencies": {
     "chai": "^4.2.0",
     "chai-http": "^4.2.1",
     "nodemon": "^1.18.10",
+    "sequelize-test-helpers": "^1.0.10",
     "should": "^13.2.3"
   }
 }

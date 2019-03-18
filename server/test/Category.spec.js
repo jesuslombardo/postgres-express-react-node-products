@@ -62,7 +62,7 @@ const {
 describe('/GET categories', () => {
     it('it should Get all categories', (done) => {
         chai.request(app)
-        .get('https://backend-test-p5.herokuapp.com/categories')
+        .get('/categories')
         .end((err, res) => {
             expect(err).to.be.null;
             expect(res).to.have.status(200);

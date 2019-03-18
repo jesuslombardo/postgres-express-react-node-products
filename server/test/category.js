@@ -7,7 +7,7 @@ const app = require('../../app');
 const should = require('should');
 
 
-const should = chai.should();
+//const should = chai.should();
 
 chai.use(chaiHttp)
 

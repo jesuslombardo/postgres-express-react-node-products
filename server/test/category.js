@@ -13,7 +13,7 @@ chai.use(chaiHttp)
 describe('/GET category', () => {
     it('it should Get all category', (done) => {
         chai.request(app)
-        .get('/categories')
+        .get('https://backend-test-p5.herokuapp.com/categories')
         .end((err, res) => {
             res.should.have.status(200);
             res.body.should.be.a('array');

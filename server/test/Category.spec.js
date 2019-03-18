@@ -59,19 +59,15 @@ const {
     const should = require('should');
 
     
-describe('/GET categories', () => {
-    it('it should Get all categories', (done) => {
-        chai.request(app)
-        .get('/categories')
-        .then(function (res) {
-            expect(res).to.have.status(200);
-            expect(res).body.should.be.a('array');
-         })
-         .catch(function (err) {
-            throw err;
-         });
-       
-    });
-});
 
+
+
+it('fails, as expected', function(done) { // <= Pass in done callback
+    chai.request(app)
+    .get('/categories')
+    .end(function(err, res) {
+      expect(res).to.have.status(200);
+      done();                               // <= Call done to signal callback end
+    });
+  });
 

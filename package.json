@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "NODE_ENV=test mocha server/test/category.js --reporter spec"
+    "test": "SET NODE_ENV=test mocha server/test/category.js --reporter spec"
   },
   "keywords": [],
   "author": "",

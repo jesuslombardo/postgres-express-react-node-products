@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "mocha ./server/test/category.js --reporter spec"
+    "test": "chai ./server/test/category.js --reporter spec"
   },
   "keywords": [],
   "author": "",

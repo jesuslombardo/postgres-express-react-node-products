@@ -61,26 +61,26 @@ const {
     })
 
 
-    /* FALTA CHEQUEAR QUE ESAS PROPIEDADES SEAN STRING, NUMERO, ETC */
-
-    
     /*
         Testing Category Model and their property
     */
     const Category = require('../models/category')
     const Category_Model = Category(sequelize, dataTypes)
     const Category_instance = new Category_Model()
+    //Testing Category Model
     describe('Category Model OK...', () => {
         checkModelName(Category_Model)('Category')
     })
+    //Testing Category Properties
     describe('Category properties OK...', () => {
         context('properties', () => {
             ;['name'].forEach(checkPropertyExists(Category_instance))
         })
     })
 
-    
+
 /////////////////////////INTEGRATION TESTING//////////////////////////////
+// https://github.com/tariqulislam/express-mysql-rest/blob/master/test/user.js
     const chai = require('chai');
     const chaiHttp = require('chai-http');
     chai.use(chaiHttp);
@@ -88,14 +88,26 @@ const {
     const api_url = "https://backend-test-p5.herokuapp.com";
     
 
-    it('list of all categories', function(done) { // <= Pass in done callback
+    it('GET /products ... OK', function(done) { // <= Pass in done callback
         //const app = require('../../app');
         //chai.request(app)
         chai.request(api_url)
-        .get('/categories')
+        .get('/products')
         .end(function(err, res) {
             expect(res).to.have.status(200);
             expect(res.body).to.be.an('array');
+            done();// <= Call done to signal callback end
+        });
+    });
+
+
+    it('GET /products/:id ... OK ', function(done) { // <= Pass in done callback
+        chai.request(api_url)
+        .get('/products/1')
+        .end(function(err, res) {
+            expect(res).to.have.status(200);
+            console.log(res.body)
+            expect(res.body).to.be.an('object');
             done();// <= Call done to signal callback end
         });
     });

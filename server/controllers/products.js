@@ -79,6 +79,9 @@ module.exports = {
       .findOne({
           where: {
             id: req.params.productId,
+          },through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
           },
         })
       .then(product => {

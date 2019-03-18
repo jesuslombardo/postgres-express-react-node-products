@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "mocha ./server/test/category.js --reporter spec --timeout 5000"
+    "test": "mocha ./server/test/category.js --reporter spec"
   },
   "keywords": [],
   "author": "",

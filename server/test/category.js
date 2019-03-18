@@ -1,5 +1,3 @@
-process.env.NODE_ENV = "test";
-
 const Category = require('../models').Category;
 const chai = require('chai');
 const chaiHttp = require('chai-http');

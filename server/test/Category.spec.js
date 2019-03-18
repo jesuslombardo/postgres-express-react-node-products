@@ -63,12 +63,15 @@ describe('/GET categories', () => {
     it('it should Get all categories', (done) => {
         chai.request(app)
         .get('/categories')
-        .end((err, res) => {
-            expect(err).to.be.null;
+        .then(function (res) {
             expect(res).to.have.status(200);
             expect(res).body.should.be.a('array');
-            done();
-        });
+         })
+         .catch(function (err) {
+            throw err;
+         });
+       
     });
 });
+
 

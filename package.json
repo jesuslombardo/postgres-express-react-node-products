@@ -8,13 +8,12 @@
     "start:dev": "nodemon ./bin/www",
     "test": "find ./server/test -name '*spec.js' | xargs mocha --require ./server/test/test_helper.js"
   },
-
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",
+    "chai-as-promised": "^7.1.1",
     "express": "^4.16.4",
     "morgan": "^1.9.1",
     "mysql": "^2.16.0",

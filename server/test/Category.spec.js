@@ -1,4 +1,7 @@
-const { expect } = require('chai');
+
+/*"test": "mocha ./server/test/Category.spec.js --reporter spec"*/
+const { expect } = require('chai')
+
 
 const {
     sequelize,
@@ -12,21 +15,60 @@ const {
   const CategoryProduct = require('../models/CategoryProduct')
   
   describe('../models/Category', () => {
-    const Model = Category(sequelize, dataTypes)
+        const Model = Category(sequelize, dataTypes)
 
-    const instance = new Model()
-    checkModelName(Model)('Category')
-    
-    context('properties', () => {
-      ;['name'].forEach(checkPropertyExists(instance))
-    })
-
-
-    it("defined a belongsToMany association with Category through CategoryProduct as 'categories'", () => {
-        expect(Product.belongsToMany).to.have.been.calledWith(Category, {
-            through: CategoryProduct,
-            as: 'categories'
+        const instance = new Model()
+        checkModelName(Model)('Category')
+        
+        context('properties', () => {
+        ;['name'].forEach(checkPropertyExists(instance))
         })
+    
+
+        /*
+        context('check associations', () => {
+            it("defined a belongsToMany association with Category through CategoryProduct as 'categories'", () => {
+                expect(Category.belongsToMany).to.have.been.calledWith(Product, {
+                    through: CategoryProduct,
+                    as: 'products'
+                })
+            })
+        })
+        
+        context('check associations', () => {
+            const OtherModel = 'Product'; // it doesn't matter what
+            before(() => {
+            Model.associate({ OtherModel })
+            })
+            it('defined a belongsTo association with OtherModel', () => {
+            expect(Category.belongsToMany).to.have.been.calledWith(OtherModel)
+            })
+        })
+        */
     })
 
-  })
+
+    //const Category = require('../models').Category;
+    const chai = require('chai');
+    const chaiHttp = require('chai-http');
+    const app = require('../../app');
+    chai.use(chaiHttp);
+    
+    
+
+    const should = require('should');
+
+    
+describe('/GET categories', () => {
+    it('it should Get all categories', (done) => {
+        chai.request(app)
+        .get('https://backend-test-p5.herokuapp.com/categories')
+        .end((err, res) => {
+            expect(err).to.be.null;
+            expect(res).to.have.status(200);
+            expect(res).body.should.be.a('array');
+            done();
+        });
+    });
+});
+

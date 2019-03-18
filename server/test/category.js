@@ -9,7 +9,6 @@ const should = chai.should();
 
 chai.use(chaiHttp)
 
-
 describe('/GET category', () => {
     it('it should Get all category', (done) => {
         chai.request(app)

@@ -22,11 +22,12 @@ https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgol
 <a href="https://backend-test-p5.herokuapp.com/products?categories=Books,Movies">https://backend-test-p5.herokuapp.com/products?categories=Books,Movies</a>
 
 POST https://backend-test-p5.herokuapp.com/products
-	key: name | value: Woody
-	key: price | value: 700
-	key: description | value: Eres mi alguacil preferido
-	key: available | value: true
-	key: categories | value: [{id:2},{id:4}]
+	key: name | value: 'Woody' (string)
+	key: price | value: 700 (number)
+	key: description | value: 'Eres mi alguacil preferido' (string)
+	key: available | value: true (boolean)
+	key: categoriesArray | value: [11,4] (array)
+	
 
 POST https://backend-test-p5.herokuapp.com/categories
 	key: name | value: Toys

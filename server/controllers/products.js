@@ -52,7 +52,6 @@ retrieve(req, res) {
       
       .then((product) => {
         let categoriesArray = JSON.parse(req.body.categoriesArray);
-        
         product.addCategory(categoriesArray).then(function() {
           return res.status(201).send(product);
         })

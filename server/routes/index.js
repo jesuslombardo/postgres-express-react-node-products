@@ -11,10 +11,10 @@ module.exports = (app) => {
 
   //////////PRODUCT//////
 
-  //getting category list
+  //getting products list
   app.get('/products', productsController.list);
 
-  //getting category list
+  //getting products list with all fields
   app.get('/productsAll', productsController.listAll);
 
   //find product by id

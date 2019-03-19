@@ -6,40 +6,6 @@ const op = Sequelize.Op;
 
 module.exports = {
 
-
-  create(req, res) {
-    return Product
-      .create({
-        name: req.body.name,
-        price: req.body.price,
-        description: req.body.description,
-        available: req.body.available,
-        categoryId: req.body.categoryId,
-      })
-      .then(product => res.status(201).send(product))
-      .catch(error => res.status(400).send(error));
-  },
-
-  
-
-/*
-retrieve(req, res) {
-    return Product
-      .then((product) => {
-        if (!product) {
-          return res.status(404).send({
-            message: 'product Not Found',
-          });
-        }
-    
-        return res.status(200).send(product);
-        
-      })
-      .catch((error) => res.status(400).send(error));
-  },
-  */
-
-
   create(req, res) {
     return Product
       .create({
@@ -49,7 +15,6 @@ retrieve(req, res) {
         available: req.body.available,
       })
 
-      
       .then((product) => {
         let categoriesArray = JSON.parse(req.body.categoriesArray);
         product.addCategory(categoriesArray).then(function() {
@@ -61,9 +26,8 @@ retrieve(req, res) {
   },
 
  
-  
 
-  ///////////////////////
+
   listAll(req, res) {    
     return Product
       .findAll({
@@ -79,7 +43,7 @@ retrieve(req, res) {
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
   },
-  ///////////////////////
+
 
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement

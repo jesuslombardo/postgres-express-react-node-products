@@ -32,6 +32,32 @@ POST https://backend-test-p5.herokuapp.com/products
 POST https://backend-test-p5.herokuapp.com/categories
 	key: name | value: Toys
 
+<h3>CATEGORIES</h3>
+Categories List:
+
+id: 1,name: "Cleaning"
+id: 2,name: "Electronics"
+id: 3,name: "Cloth"
+id: 4,name: "BlackFriday"
+id: 5,name: "Books"
+id: 6,name: "Movies"
+id: 20,name: "Antigüedades"
+id: 25,name: "Celulares y Accesorios"
+id: 26,name: "Coleccionables y Hobbies"
+id: 27,name: "Computación"
+id: 17,name: "Vehiculos"
+id: 31,name: "Servicios"
+id: 18,name: "Alimentos y Bebidas"
+id: 21,name: "Arte y Artesanías"
+id: 19,name: "Animales y Mascotas"
+id: 32,name: "Inmuebles"
+id: 24,name: "Cámaras y Accesorios"
+id: 28,name: "Consola y Videojuegos"
+id: 30,name: "Electrodomésticos"
+id: 29,name: "Deporte y Fitness"
+id: 23,name: "Belleza y Cuidado Personal"
+id: 22,name: "Bebés"
+
 <h3>DEPLOY TO HEROKU</h3>
 heroku git:clone -a backend-test-p5 (BACKUP)
 heroku login

@@ -10,12 +10,14 @@ module.exports = {
             model: Product,
             as: 'products',
             required: false,
-            attributes: ['id', 'name','price', 'description','available'],
+            attributes: ['name','price', 'description','available'],
             through: {
               // This block of code allows you to retrieve the properties of the join table
               model: CategoryProduct,
+              attributes: []
             }
           }],
+          attributes: ['name'],
         })
         .then((categories) => res.status(200).send(categories))
         .catch((error) => res.status(400).send(error));

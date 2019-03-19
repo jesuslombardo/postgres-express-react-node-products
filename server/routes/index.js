@@ -3,6 +3,8 @@ const productsController = require('../controllers').products;
 const pivotController = require('../controllers').pivot;
 
 module.exports = (app) => {
+
+  
   app.get('/', (req, res) => res.status(200).send({
     message: 'Welcome to the Products API!',
   }));

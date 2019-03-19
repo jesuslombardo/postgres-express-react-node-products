@@ -34,20 +34,20 @@ module.exports = {
 
     return Product
       .findAll({
-        
         include: [{
           model: Category,
           as: 'categories',
           required: true, //filtra
+          attributes: ['name'],
           where: whereStatement,
           through: {
             // This block of code allows you to retrieve the properties of the join table
             model: CategoryProduct,
-          },
-        },
-        
-      ],
-      })
+            attributes: []
+          }
+          }],
+          attributes: ['name','price', 'description','available'],
+        })
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
 
@@ -55,10 +55,15 @@ module.exports = {
 
   retrieve(req, res) {
     return Product
-      .findByPk({ 
-        where: {id: req.params.productId}, 
-        
+      .findByPk(req.params.productId,{ 
+        include: [{
+          model: Category,
+          as: 'categories',
+          required: true, //filtra
+          attributes: ['name'],
+        }]
       })
+
       .then((product) => {
         if (!product) {
           return res.status(404).send({

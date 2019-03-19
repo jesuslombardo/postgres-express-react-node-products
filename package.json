@@ -6,7 +6,7 @@
   "scripts": {
     "start": "nodemon ./bin/www",
     "start:dev": "nodemon ./bin/www",
-    "test": "find ./server/test -name '*spec.js' | xargs mocha --require ./server/test/test_helper.js"
+    "test": "find ./server/test -name '*spec.js' | xargs mocha --require ./server/test/test_helper.js --timeout 10000"
   },
   "keywords": [],
   "author": "",

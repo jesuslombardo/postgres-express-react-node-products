@@ -29,12 +29,10 @@ module.exports = {
         description: req.body.description,
         available: req.body.available,
         categories: [
-          {id: 11, name: 'Alpha'},
-          {id: 22, name: 'Beta'}
+          {id: 2, name: 'Electronics'},
+          //{id: 22, name: 'Beta'}
         ]
-        //categoryId: req.body.categoryId,
-      }
-      , {
+      }, {
         include: [{
           model: Category,
           as: 'categories'

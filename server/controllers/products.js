@@ -44,10 +44,10 @@ module.exports = {
 
     return Product
       .findAll({
-        /*include: [{
+        include: [{
           model: Category,
           as: 'categories',
-          required: true, //filtra
+          //required: true, //filtra
           attributes: ['name'],
           where: whereStatement,
           through: {
@@ -55,7 +55,7 @@ module.exports = {
             model: CategoryProduct,
             attributes: []
           }
-          }],*/
+          }],
           attributes: ['name','price', 'description','available'],
         })
       .then((products) => res.status(200).send(products))

@@ -52,11 +52,7 @@ retrieve(req, res) {
       
       .then((product) => {
         let categoriesArray = req.body.categoriesArray;
-        let categories_ids = [];
-        categoriesArray.forEach(id => {
-          categories_ids.push(id);
-        });
-        product.addCategory(categories_ids).then(function() {
+        product.addCategory(categoriesArray).then(function() {
           return res.status(201).send(product);
         })
       })

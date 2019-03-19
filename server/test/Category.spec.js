@@ -1,95 +1,76 @@
 /* TESTING:
-
-1)
-Modelo Product {
-	name: string
-	price: int
-	description: string
-	available: bool = default true
-}
-
-2) Tambien tiene que tener un getter `truncateDescription` que devuelva la descripción truncada a solo 20 caracteres y termine con ‘…’
-
-3) Agregar un hook antes de ser creado que se fije en la propiedad currency que fue enviada, si esta en ‘USD’ guardar el precio como vino, si esta en ‘ARS’ cambiar el precio a Dólares.
-
-5) Los productos pueden tener varias categorías.
-
-6) 
-Los endpoints van a ser los siguientes:
-
-GET /products
-GET /products/:id
-POST /products
-PUT /products/:id
-DELETE /products/:id
+validar relacion de muchos a muchos
 
 7) GET /products?categories=books,movies
 Debería traer solo los productos que tengan la categoría book o movies
 
 */
-
-
-
 //////////////// UNIT TESTING //////////////////////
-
-
 /*"test": "mocha ./server/test/Category.spec.js --reporter spec"*/
+
 const { expect } = require('chai')
+
 
 const {
     sequelize,
     dataTypes,
     checkModelName,
-    checkPropertyExists
+    checkPropertyExists,
+    checkHookDefined
   } = require('sequelize-test-helpers')
 
-
-    //PRODUCTS
+    // Product Model
     const Product = require('../models/product')
     const Product_Model = Product(sequelize, dataTypes)
     const Product_instance = new Product_Model()
 
-    //Testing Product Model
-    describe('Product Model OK...', () => {
+    it('Product | Model | .. OK ..', () => {
         checkModelName(Product_Model)('Product')
     })
 
-    //Testing Product Properties
-    describe('Product properties OK...', () => {
-        ;['name','price','description','available'].forEach(checkPropertyExists(Product_instance))
+    it('Product | Properties | .. OK ..', () => {
+        expect(Product_instance).to.be.an('object');
+        expect(Product_instance).to.have.property('name');
+        expect(Product_instance).to.have.property('price');
+        expect(Product_instance).to.have.property('description');
+    })
+
+    it('Product | truncateDescription | .. OK ..', () => {
+        expect(Product_instance).to.respondTo('truncateDescription');
+    })
+
+    it('Product | hook | beforeCreate | .. OK ..', () => {
+        expect(Product_instance.hooks["beforeCreate"]).to.be.a('function')
     })
 
 
-    /*
-        Testing Category Model and their property
-    */
+    // Category Model
     const Category = require('../models/category')
     const Category_Model = Category(sequelize, dataTypes)
     const Category_instance = new Category_Model()
-    //Testing Category Model
-    describe('Category Model OK...', () => {
+
+    // Model
+    it('Category | Model | .. OK ..', () => {
         checkModelName(Category_Model)('Category')
     })
-    //Testing Category Properties
-    describe('Category properties OK...', () => {
-        context('properties', () => {
-            ;['name'].forEach(checkPropertyExists(Category_instance))
-        })
+
+    // Properties
+    it('Category | Properties | .. OK ..', () => {
+        ;['name'].forEach(checkPropertyExists(Category_instance))
     })
+
 
 
 /////////////////////////INTEGRATION TESTING//////////////////////////////
-// https://github.com/tariqulislam/express-mysql-rest/blob/master/test/user.js
-    const chai = require('chai');
-    const chaiHttp = require('chai-http');
-    chai.use(chaiHttp);
-    
-    const api_url = "https://backend-test-p5.herokuapp.com";
-    //const api_url = "http://localhost:8000";
-    
 
+const chai = require('chai');
+const chaiHttp = require('chai-http');
+chai.use(chaiHttp);
 
-    it('GET /products ... OK', function(done) { // <= Pass in done callback
+const api_url = "https://backend-test-p5.herokuapp.com";
+//const api_url = "http://localhost:8000";
+
+    it('CRUD | GET /products | .. OK ..', function(done) { // <= Pass in done callback
         //const app = require('../../app');
         //chai.request(app)
         chai.request(api_url)
@@ -101,8 +82,7 @@ const {
         });
     });
 
-
-    it('GET /products/:id ... OK ', function(done) { // <= Pass in done callback
+    it('CRUD | GET /products/:id | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)
         .get('/products/1')
         .end(function(err, res) {
@@ -118,8 +98,7 @@ const {
         });
     });
 
- 
-    it('POST /products ... OK ', function(done) { // <= Pass in done callback
+    it('CRUD | POST /products | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)
         .post('/products')
         .send({
@@ -144,9 +123,7 @@ const {
         });
     });
 
-
-
-    it('PUT /products/:id ... OK ', function(done) { // <= Pass in done callback
+    it('CRUD | PUT /products/:id | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)
         .put('/products/1')
         .send({
@@ -170,9 +147,8 @@ const {
         });
     });
 
-
     /* // DANGER ONE
-    it('DELETE /products/:id . OK...', function(done) { // <= Pass in done callback
+    it('CRUD | DELETE /products/:id | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)
         .delete('/products/14')
         .end(function(err, res) {

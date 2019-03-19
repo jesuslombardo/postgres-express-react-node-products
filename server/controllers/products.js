@@ -13,15 +13,19 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         available: req.body.available,
-        //categoryId: req.body.categoryId,
-        //categories: req.body.categories //Category: [{id:2},{id:4}]
-        //categories:[{id:2},{id:4}],
-        categories: [{name:'Bazar'}]
-      }, {
+
         include: [{
-          association: CategoryProduct,
-          include: [ Category ]
-        }]
+          model: Category,
+          as: 'categories',
+          required: true, //filtra
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
+          }
+          }],
+        categories : [{name : "Bazar"}]
+        
+
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));

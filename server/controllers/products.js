@@ -9,6 +9,14 @@ module.exports = {
   create(req, res) {
     return Product
       .create({
+        include: [{
+          model: Category,
+          as: 'categories',
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
+          }
+          }],
         name: req.body.name,
         price: req.body.price,
         description: req.body.description,
@@ -16,13 +24,10 @@ module.exports = {
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
         //categories:[{id:2},{id:4}],
-        categories: [
-          { id: 2, name: 'Electronics' },
-          { id: 4, name: 'BlackFriday' }
-        ]
+        categories: { id: 2, name: 'Electronics' }
       }, {
-        include: [{
-          association: CategoryProduct,
+        include: [ {
+          association: Category,
           as: 'categories'
         }]
       })

@@ -47,15 +47,6 @@ retrieve(req, res) {
         price: req.body.price,
         description: req.body.description,
         available: req.body.available,
-        categories: [
-          {name: 'Electronics'}, //ALREADY exists
-          //{id: 22, name: 'Beta'}
-        ]
-      }, {
-        include: [{
-          model: Category,
-          as: 'categories'
-        }]
       })
 
       .then((product) => {
@@ -63,9 +54,7 @@ retrieve(req, res) {
           return res.status(201).send(product);
         })
       })
-
-
-      //.then(product => res.status(201).send(product))
+      
       .catch(error => res.status(400).send(error));
   },
 

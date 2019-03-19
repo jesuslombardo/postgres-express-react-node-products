@@ -59,12 +59,10 @@ retrieve(req, res) {
       })
 
       .then((product) => {
-        product.addCategory(2).then(function() {
+        product.addCategory([2,4]).then(function() {
           return res.status(201).send(product);
         })
       })
-
-      
 
 
       //.then(product => res.status(201).send(product))

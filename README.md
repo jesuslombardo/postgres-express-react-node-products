@@ -14,11 +14,12 @@ https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgol
 </a>
 
 <h3>EXAMPLES</h3>
-https://backend-test-p5.herokuapp.com/products
-https://backend-test-p5.herokuapp.com/products/5
-https://backend-test-p5.herokuapp.com/categories
-https://backend-test-p5.herokuapp.com/categories/3
-https://backend-test-p5.herokuapp.com/products?categories=Books,Movies
+
+<a href="https://backend-test-p5.herokuapp.com/products">https://backend-test-p5.herokuapp.com/products</a>
+<a href="https://backend-test-p5.herokuapp.com/products/5">https://backend-test-p5.herokuapp.com/products/5</a>
+<a href="https://backend-test-p5.herokuapp.com/categories">https://backend-test-p5.herokuapp.com/categories</a>
+<a href="https://backend-test-p5.herokuapp.com/categories/3">https://backend-test-p5.herokuapp.com/categories/3</a>
+<a href="https://backend-test-p5.herokuapp.com/products?categories=Books,Movies">https://backend-test-p5.herokuapp.com/products?categories=Books,Movies</a>
 
 POST https://backend-test-p5.herokuapp.com/products
 	key: name | value: Woody
@@ -34,8 +35,6 @@ heroku git:clone -a backend-test-p5 (BACKUP)
 heroku login
 npm upgrade -g heroku
 heroku git:remote -a backend-test-p5
-
-
 
 <h3>EJERCICIO</h3>
 Hacer una RESTful API usando Node, Express y Sequelize (Postgres)

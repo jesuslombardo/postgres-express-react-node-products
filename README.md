@@ -9,6 +9,9 @@ npm install
 export DATABASE_URL=postgres://iqcrcrhp:orGULbLi1BivFYdCWyZc8Brs74cO3ozl@isilo.db.elephantsql.com:5432/iqcrcrhp
 npm run start
 
+JSON PRETTY
+https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc
+
 
 ///////// Examples /////////
 https://backend-test-p5.herokuapp.com/products

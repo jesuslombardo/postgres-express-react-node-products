@@ -21,10 +21,11 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
+
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement
     let whereStatement = {} 
-    i.f(Object.keys(req.query).length > 0){
+    if(Object.keys(req.query).length > 0){
       let queryCategories = req.query.categories.toString().split(",")
       whereStatement = {name: {
         [op.or]: queryCategories

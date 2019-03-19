@@ -36,7 +36,7 @@ module.exports = {
       }
       , {
         include: [{
-          model: CategoryProduct,
+          model: Category,
           as: 'categories'
         }]
       })

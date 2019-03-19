@@ -19,8 +19,8 @@ module.exports = {
         categories: [{name:'Bazar'}]
       }, {
         include: [{
-          association: Product.CategoryProduct,
-          include: [ CategoryProduct.Category ]
+          association: CategoryProduct,
+          include: [ Category ]
         }]
       })
       .then(product => res.status(201).send(product))

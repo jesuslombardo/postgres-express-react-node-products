@@ -26,7 +26,7 @@ POST https://backend-test-p5.herokuapp.com/products
 	key: price | value: 700 (number)
 	key: description | value: 'Eres mi alguacil preferido' (string)
 	key: available | value: true (boolean)
-	key: categoriesArray | value: [11,4] (array)
+	key: categoriesArray | value: [26,4] (array)
 	
 
 POST https://backend-test-p5.herokuapp.com/categories

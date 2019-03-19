@@ -18,7 +18,7 @@ module.exports = {
         categories: [{id:2}]
       },{
         include: [{
-          association: Category,
+          association: CategoryProduct,
           as: 'categories'
         }]
       })

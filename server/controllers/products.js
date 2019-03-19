@@ -40,10 +40,15 @@ module.exports = {
           as: 'categories'
         }]
       })
-      .then(product => Category.addProduct([product, 2]))
-      .then(product => res.status(201).send(product))
+
+      .then(function(product) { 
+          product.setCategory({id: 2})
+          res.status(201).send(product)
+        }
+        )
       .catch(error => res.status(400).send(error));
   },
+  
 
   ///////////////////////
   listAll(req, res) {    

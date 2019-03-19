@@ -24,10 +24,10 @@ module.exports = {
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
         //categories:[{id:2},{id:4}],
-        categories: { id: 2, name: 'Electronics' }
+        categories: [{ id: 2, name: 'Electronics' }]
       }, {
         include: [ {
-          association: Category,
+          association: CategoryProduct,
           as: 'categories'
         }]
       })

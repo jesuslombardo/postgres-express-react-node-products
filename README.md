@@ -26,6 +26,7 @@ POST https://backend-test-p5.herokuapp.com/products
 	key: price | value: 700
 	key: description | value: Eres mi alguacil preferido
 	key: available | value: true
+	key: categories | value: [{id:2},{id:4}]
 
 POST https://backend-test-p5.herokuapp.com/categories
 	key: name | value: Toys

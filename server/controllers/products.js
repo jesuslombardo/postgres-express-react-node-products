@@ -30,7 +30,8 @@ module.exports = {
         available: req.body.available,
         //categoryId: req.body.categoryId,
       })
-      .addCategories([{name : "Bazar"},{name : "Bazar2"}])
+      
+      .then(product => product.addCategories([{name : "Bazar"},{name : "Bazar2"}]))
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },

@@ -6,7 +6,6 @@ const op = Sequelize.Op;
 
 module.exports = {
 
-
   create(req, res) {
     return Product
       .create({
@@ -14,11 +13,17 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         available: req.body.available,
-        categoryId: req.body.categoryId,
-      })
+        //categoryId: req.body.categoryId,
+        Category: req.body.categoryIds //Category: [{id:1},{id:2}]
+      },{
+        include: Category
+     })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },
+
+
+ 
 
 
 
@@ -50,9 +55,6 @@ module.exports = {
         })
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
-
-      
-
   },
 
   retrieve(req, res) {
@@ -90,7 +92,6 @@ module.exports = {
       .catch((error) => res.status(400).send(error));
   },
 
-
   update(req, res) {
     return Product
       .findOne({
@@ -122,7 +123,6 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
-  
   destroy(req, res) {
     return Product
       .findOne({

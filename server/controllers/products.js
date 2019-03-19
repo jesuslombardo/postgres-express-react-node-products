@@ -22,6 +22,23 @@ module.exports = {
 
   
 
+/*
+retrieve(req, res) {
+    return Product
+      .then((product) => {
+        if (!product) {
+          return res.status(404).send({
+            message: 'product Not Found',
+          });
+        }
+    
+        return res.status(200).send(product);
+        
+      })
+      .catch((error) => res.status(400).send(error));
+  },
+  */
+
 
   create(req, res) {
     return Product
@@ -41,13 +58,16 @@ module.exports = {
         }]
       })
 
-      .then(function(product) { 
-          product.setCategory({id: 2})
-          res.status(201).send(product)
-        }
-        )
+      .then((product) => {
+        product.addCategories({id: 2});
+        return res.status(201).send(product);
+      })
+
+      //.then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },
+
+ 
   
 
   ///////////////////////

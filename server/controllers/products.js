@@ -15,7 +15,16 @@ module.exports = {
         available: req.body.available,
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
-        //categories:[{id:2},{id:4}]
+        //categories:[{id:2},{id:4}],
+        categories: [
+          { id: 2, name: 'Electronics' },
+          { id: 4, name: 'BlackFriday' }
+        ]
+      }, {
+        include: [{
+          association: CategoryProduct,
+          as: 'categories'
+        }]
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
@@ -34,7 +43,7 @@ module.exports = {
 
     return Product
       .findAll({
-        /*include: [{
+        include: [{
           model: Category,
           as: 'categories',
           required: true, //filtra
@@ -46,7 +55,7 @@ module.exports = {
             attributes: []
           }
           }],
-          attributes: ['name','price', 'description','available'],*/
+          attributes: ['name','price', 'description','available'],
         })
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));

@@ -98,6 +98,7 @@ const api_url = "https://backend-test-p5.herokuapp.com";
         });
     });
 
+    /* uncomment when test POST, it will create new product
     it('CRUD | POST /products | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)
         .post('/products')
@@ -122,6 +123,7 @@ const api_url = "https://backend-test-p5.herokuapp.com";
             done();// <= Call done to signal callback end
         });
     });
+    */
 
     it('CRUD | PUT /products/:id | .. OK ..', function(done) { // <= Pass in done callback
         chai.request(api_url)

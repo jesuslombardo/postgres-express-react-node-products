@@ -31,7 +31,12 @@ GET /categories/:id
 POST /categories
 PUT /categories/:id
 DELETE /categories/:id
-/////////
+INSTALL
+git clone https://github.com/jesuslombardo/postgres-express-react-node-products.git
+npm install
+export DATABASE_URL=postgres://iqcrcrhp:orGULbLi1BivFYdCWyZc8Brs74cO3ozl@isilo.db.elephantsql.com:5432/iqcrcrhp
+npm run start
+
 
 ========== EJERCICIO ===========
 Hacer una RESTful API usando Node, Express y Sequelize (Postgres)
@@ -71,4 +76,11 @@ Debería traer solo los productos que tengan la categoría book o movies
 
 Usar tests para demostrar que los requerimientos funcionan
 ========== EJERCICIO ===========
+
+DEPLOY HEROKU
+heroku git:clone -a backend-test-p5 (BACKUP)
+heroku login
+npm upgrade -g heroku
+heroku git:remote -a backend-test-p5
+
 </pre>

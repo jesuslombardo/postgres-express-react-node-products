@@ -9,14 +9,6 @@ module.exports = {
   create(req, res) {
     return Product
       .create({
-        include: [{
-          model: Category,
-          as: 'categories',
-          through: {
-            // This block of code allows you to retrieve the properties of the join table
-            model: CategoryProduct,
-          }
-          }],
         name: req.body.name,
         price: req.body.price,
         description: req.body.description,

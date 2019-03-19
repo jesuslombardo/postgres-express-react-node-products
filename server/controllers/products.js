@@ -21,7 +21,7 @@ module.exports = {
   },
 
   
-  
+
 
   create(req, res) {
     return Product
@@ -40,7 +40,7 @@ module.exports = {
           as: 'categories'
         }]
       })
-
+      .then(product => Category.addProduct([product, 2]))
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },

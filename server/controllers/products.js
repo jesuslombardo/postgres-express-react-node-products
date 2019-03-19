@@ -21,6 +21,8 @@ module.exports = {
   },
 
   
+  
+
   create(req, res) {
     return Product
       .create({
@@ -29,7 +31,7 @@ module.exports = {
         description: req.body.description,
         available: req.body.available,
         categories: [
-          {id: 2, name: 'Electronics'},
+          {name: 'Electronics'}, //ALREADY exists
           //{id: 22, name: 'Beta'}
         ]
       }, {

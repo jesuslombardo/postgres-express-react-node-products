@@ -63,6 +63,11 @@ module.exports = {
           as: 'categories',
           required: true, //filtra
           attributes: ['name'],
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
+            attributes: []
+          }
         }]
       })
 

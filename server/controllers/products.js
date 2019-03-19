@@ -57,16 +57,7 @@ module.exports = {
     return Product
       .findByPk({ 
         where: {id: req.params.productId}, 
-        include: [{
-          model: Category,
-          as: 'categories',
-          required: true, //filtra
-          where: whereStatement,
-          through: {
-            // This block of code allows you to retrieve the properties of the join table
-            model: CategoryProduct,
-          },
-        }]
+        
       })
       .then((product) => {
         if (!product) {

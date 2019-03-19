@@ -14,6 +14,9 @@ module.exports = (app) => {
   //getting category list
   app.get('/products', productsController.list);
 
+  //getting category list
+  app.get('/productsAll', productsController.listAll);
+
   //find product by id
   app.get('/products/:productId', productsController.retrieve);
 

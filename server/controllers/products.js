@@ -6,6 +6,21 @@ const op = Sequelize.Op;
 
 module.exports = {
 
+
+  create(req, res) {
+    return Product
+      .create({
+        name: req.body.name,
+        price: req.body.price,
+        description: req.body.description,
+        available: req.body.available,
+        categoryId: req.body.categoryId,
+      })
+      .then(product => res.status(201).send(product))
+      .catch(error => res.status(400).send(error));
+  },
+
+  
   create(req, res) {
     return Product
       .create({
@@ -17,13 +32,14 @@ module.exports = {
         include: [{
           model: Category,
           as: 'categories',
+          categories : [{name : "Bazar"}],
           required: true, //filtra
           through: {
             // This block of code allows you to retrieve the properties of the join table
             model: CategoryProduct,
           }
           }],
-        categories : [{name : "Bazar"}]
+        
         
 
       })
@@ -32,6 +48,23 @@ module.exports = {
   },
 
   
+  listAll(req, res) {    
+    return Product
+      .findAll({
+        include: [{
+          model: Category,
+          as: 'categories',
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
+          }
+          }],
+        })
+      .then((products) => res.status(200).send(products))
+      .catch((error) => res.status(400).send(error));
+  },
+
+
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement
     let whereStatement = {} 
@@ -47,7 +80,7 @@ module.exports = {
         include: [{
           model: Category,
           as: 'categories',
-          //required: true, //filtra
+          required: true, //filtra
           attributes: ['name'],
           where: whereStatement,
           through: {

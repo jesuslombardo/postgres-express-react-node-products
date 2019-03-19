@@ -15,7 +15,7 @@ module.exports = {
         available: req.body.available,
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
-        categories:[{id:2},{id:4}]
+        //categories:[{id:2},{id:4}]
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));

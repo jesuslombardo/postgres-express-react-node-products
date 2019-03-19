@@ -16,7 +16,7 @@ module.exports = {
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
         //categories:[{id:2},{id:4}],
-        categories: [{ id: 2, name: 'Electronics' }]
+        categories: [{ categoryId: 2, productId: this.id }]
       }, {
         include: [ {
           association: CategoryProduct,
@@ -27,7 +27,7 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
-
+  
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement
     let whereStatement = {} 

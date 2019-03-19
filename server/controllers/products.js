@@ -49,12 +49,18 @@ retrieve(req, res) {
         available: req.body.available,
       })
 
+      
       .then((product) => {
-        product.addCategory([2,4]).then(function() {
+        let categoriesArray = req.body.categoriesArray;
+        let categories_ids = [];
+        categoriesArray.forEach(id => {
+          categories_ids.push(id);
+        });
+        product.addCategory(categories_ids).then(function() {
           return res.status(201).send(product);
         })
       })
-      
+
       .catch(error => res.status(400).send(error));
   },
 

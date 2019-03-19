@@ -59,7 +59,7 @@ retrieve(req, res) {
       })
 
       .then((product) => {
-        product.addCategory({categoryId: 2}).then(function() {
+        product.addCategory(2).then(function() {
           return res.status(201).send(product);
         })
       })

@@ -2,25 +2,23 @@
 
 <h1>API: <a href="https://backend-test-p5.herokuapp.com/">https://backend-test-p5.herokuapp.com/</a></h1>
 
-
-INSTALL
+<h3>INSTALL</h3>
 git clone https://github.com/jesuslombardo/postgres-express-react-node-products.git
 npm install
 export DATABASE_URL=postgres://iqcrcrhp:orGULbLi1BivFYdCWyZc8Brs74cO3ozl@isilo.db.elephantsql.com:5432/iqcrcrhp
 npm run start
 
-JSON PRETTY<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc">
+<h3>JSON PRETTY</h3>
+<a href="https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc">
 https://chrome.google.com/webstore/detail/jsonview/chklaanhfefbnpoihckbnefhakgolnmc
 </a>
 
-///////// Examples /////////
+<h3>EXAMPLES</h3>
 https://backend-test-p5.herokuapp.com/products
-https://backend-test-p5.herokuapp.com/products?categories=Books,Movies
+https://backend-test-p5.herokuapp.com/products/5
 https://backend-test-p5.herokuapp.com/categories
-
-
-POST https://backend-test-p5.herokuapp.com/categories
-	key: name | value: Toys
+https://backend-test-p5.herokuapp.com/categories/3
+https://backend-test-p5.herokuapp.com/products?categories=Books,Movies
 
 POST https://backend-test-p5.herokuapp.com/products
 	key: name | value: Woody
@@ -28,27 +26,19 @@ POST https://backend-test-p5.herokuapp.com/products
 	key: description | value: Eres mi alguacil preferido
 	key: available | value: true
 
+POST https://backend-test-p5.herokuapp.com/categories
+	key: name | value: Toys
 
-//////////  CRUD /////////
-PRODUCTS
-GET /products
-GET /products/:id
-POST /products
-PUT /products/:id
-DELETE /products/:id
-
-CATEGORIES
-GET /categories
-GET /categories/:id
-POST /categories
-PUT /categories/:id
-DELETE /categories/:id
+<h3>DEPLOY TO HEROKU</h3>
+heroku git:clone -a backend-test-p5 (BACKUP)
+heroku login
+npm upgrade -g heroku
+heroku git:remote -a backend-test-p5
 
 
 
-========== EJERCICIO ===========
+<h3>EJERCICIO</h3>
 Hacer una RESTful API usando Node, Express y Sequelize (Postgres)
-
 Vamos a tener una API de Productos y Categorias. 
 
 Modelo Product {
@@ -67,7 +57,6 @@ Modelo Category {
 }
 
 Los productos pueden tener varias categorías.
-
 Los endpoints van a ser los siguientes:
 
 GET /products
@@ -77,18 +66,8 @@ PUT /products/:id
 DELETE /products/:id
 
 Ademas GET /products puede incluir un query de categorías por ejemplo:
-
 GET /products?categories=books,movies
-
 Debería traer solo los productos que tengan la categoría book o movies
-
 Usar tests para demostrar que los requerimientos funcionan
-========== EJERCICIO ===========
-
-DEPLOY HEROKU
-heroku git:clone -a backend-test-p5 (BACKUP)
-heroku login
-npm upgrade -g heroku
-heroku git:remote -a backend-test-p5
 
 </pre>

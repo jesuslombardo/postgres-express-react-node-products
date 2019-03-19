@@ -15,10 +15,9 @@ module.exports = {
         available: req.body.available,
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
-        categories: [{id:2}]
-      },{
+        categories: [{id:2}],
         include: [{
-          association: CategoryProduct,
+          model: Category,
           as: 'categories'
         }]
       })

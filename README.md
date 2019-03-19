@@ -1,5 +1,14 @@
 <pre>
+
 <h1>API: <a href="https://backend-test-p5.herokuapp.com/">https://backend-test-p5.herokuapp.com/</a></h1>
+
+
+INSTALL
+git clone https://github.com/jesuslombardo/postgres-express-react-node-products.git
+npm install
+export DATABASE_URL=postgres://iqcrcrhp:orGULbLi1BivFYdCWyZc8Brs74cO3ozl@isilo.db.elephantsql.com:5432/iqcrcrhp
+npm run start
+
 
 ///////// Examples /////////
 https://backend-test-p5.herokuapp.com/products
@@ -31,11 +40,7 @@ GET /categories/:id
 POST /categories
 PUT /categories/:id
 DELETE /categories/:id
-INSTALL
-git clone https://github.com/jesuslombardo/postgres-express-react-node-products.git
-npm install
-export DATABASE_URL=postgres://iqcrcrhp:orGULbLi1BivFYdCWyZc8Brs74cO3ozl@isilo.db.elephantsql.com:5432/iqcrcrhp
-npm run start
+
 
 
 ========== EJERCICIO ===========

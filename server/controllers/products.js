@@ -28,26 +28,14 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         available: req.body.available,
-
-        include: [{
-          model: Category,
-          as: 'categories',
-          categories : [{name : "Bazar"}],
-          required: true, //filtra
-          through: {
-            // This block of code allows you to retrieve the properties of the join table
-            model: CategoryProduct,
-          }
-          }],
-        
-        
-
+        //categoryId: req.body.categoryId,
       })
+      .addCategories([{name : "Bazar"},{name : "Bazar2"}])
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },
 
-  
+  ///////////////////////
   listAll(req, res) {    
     return Product
       .findAll({
@@ -63,7 +51,7 @@ module.exports = {
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
   },
-
+  ///////////////////////
 
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement

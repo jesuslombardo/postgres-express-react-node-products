@@ -15,26 +15,16 @@ module.exports = {
         available: req.body.available,
         //categoryId: req.body.categoryId,
         //categories: req.body.categories //Category: [{id:2},{id:4}]
-        CategoryProduct: [{id:2},{id:4}]
-      }, {
-        include: [{
-          association: CategoryProduct,
-          as: 'categories'
-        }]
+        categories:[{id:2},{id:4}]
       })
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },
 
-
- 
-
-
-
   list(req, res) {    
     // this looks if there is some query string and depends of that build the where Statement
     let whereStatement = {} 
-    if(Object.keys(req.query).length > 0){
+    i.f(Object.keys(req.query).length > 0){
       let queryCategories = req.query.categories.toString().split(",")
       whereStatement = {name: {
         [op.or]: queryCategories

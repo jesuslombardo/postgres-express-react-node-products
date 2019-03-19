@@ -14,7 +14,7 @@ module.exports = {
         description: req.body.description,
         available: req.body.available,
         //categoryId: req.body.categoryId,
-        categories: req.body.categoryIds //Category: [{id:2},{id:4}]
+        categories: req.body.categories //Category: [{id:2},{id:4}]
       },{
         include: Category
      })

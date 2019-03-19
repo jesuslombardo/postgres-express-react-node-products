@@ -28,11 +28,19 @@ module.exports = {
         price: req.body.price,
         description: req.body.description,
         available: req.body.available,
+        categories: [
+          {id: 11, name: 'Alpha'},
+          {id: 22, name: 'Beta'}
+        ]
         //categoryId: req.body.categoryId,
+      }
+      , {
+        include: [{
+          model: CategoryProduct,
+          as: 'categories'
+        }]
       })
-      
-      //.then(product => product.addCategories([{name : "Bazar"},{name : "Bazar2"}]))
-      .then(product => console.log(product))
+
       .then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));
   },

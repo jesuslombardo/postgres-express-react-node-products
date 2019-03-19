@@ -38,7 +38,12 @@ module.exports = {
         include: [{
           model: Product,
           as: 'products',
-        }],
+          through: {
+            // This block of code allows you to retrieve the properties of the join table
+            model: CategoryProduct,
+            attributes: []
+          }
+        }],attributes: ['name'],
       })
       .then((category) => {
         if (!category) {

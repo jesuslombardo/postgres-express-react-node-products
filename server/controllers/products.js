@@ -59,9 +59,13 @@ retrieve(req, res) {
       })
 
       .then((product) => {
-        product.addCategories({id: 2});
-        return res.status(201).send(product);
+        product.setCategories([{id: 2}]).then(function() {
+          return res.status(201).send(product);
+        })
       })
+
+      
+
 
       //.then(product => res.status(201).send(product))
       .catch(error => res.status(400).send(error));

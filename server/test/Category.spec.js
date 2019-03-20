@@ -15,8 +15,7 @@ const {
     sequelize,
     dataTypes,
     checkModelName,
-    checkPropertyExists,
-    checkHookDefined
+    checkPropertyExists
   } = require('sequelize-test-helpers')
 
     // Product Model
@@ -67,8 +66,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-const api_url = "https://backend-test-p5.herokuapp.com";
-//const api_url = "http://localhost:8000";
+//const api_url = "https://backend-test-p5.herokuapp.com";
+const api_url = "http://localhost:8000";
 
     it('CRUD | GET /products | .. OK ..', function(done) { // <= Pass in done callback
         //const app = require('../../app');

@@ -9,6 +9,10 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.INTEGER,
       allowNull: false,
     },
+    currency: {
+      type: DataTypes.STRING,
+      defaultValue: 'USD',
+    },
     description: {
       type: DataTypes.STRING,
       allowNull: false,
@@ -17,6 +21,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.BOOLEAN,
       defaultValue: true,
     },
+    
   });
 
  Product.associate = (models) => {
@@ -35,12 +40,10 @@ module.exports = (sequelize, DataTypes) => {
   }
 
   Product.beforeCreate((product) => {
-    let currency_ar = product.price.includes("ARS");
     let currency_change = 40;
-    currency_ar ? product.price*currency_change : product.price 
+    product.price = product.currency === "ARS" ? product.price/currency_change : product.price;
+    product.currency = 'USD';
   })  
-
-
 
   return Product;
 };

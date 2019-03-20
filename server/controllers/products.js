@@ -11,6 +11,7 @@ module.exports = {
       .create({
         name: req.body.name,
         price: req.body.price,
+        currency: req.body.currency,
         description: req.body.description,
         available: req.body.available,
       })
@@ -69,7 +70,7 @@ module.exports = {
             attributes: []
           }
           }],
-          attributes: ['name','price', 'description','available'],
+          attributes: ['name','price','currency','description','available'],
         })
       .then((products) => res.status(200).send(products))
       .catch((error) => res.status(400).send(error));
@@ -90,7 +91,7 @@ module.exports = {
           },
           
         }],
-        attributes: ['name','price', 'description','available'],
+        attributes: ['name','price','currency','description','available'],
       })
 
       .then((product) => {
@@ -126,14 +127,14 @@ module.exports = {
             message: 'product Not Found',
           });
         }
-  
+
         return product
           .update({
             name: req.body.name || product.name,
             price: req.body.price || product.price,
+            currency: req.body.currency || product.currency,
             description: req.body.description || product.description,
-            available: req.body.available || product.available,
-            categoryId: req.body.categoryId || product.categoryId,
+            available: req.body.available || product.available
           })
           .then(updatedProduct => res.status(200).send(updatedProduct))
           .catch(error => res.status(400).send(error));

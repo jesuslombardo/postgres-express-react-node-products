@@ -10,7 +10,7 @@ module.exports = {
             model: Product,
             as: 'products',
             required: false,
-            attributes: ['name','price', 'description','available'],
+            attributes: ['name','price','currency','description','available'],
             through: {
               // This block of code allows you to retrieve the properties of the join table
               model: CategoryProduct,

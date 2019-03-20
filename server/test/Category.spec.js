@@ -1,15 +1,8 @@
-/* TESTING:
-validar relacion de muchos a muchos
-
-7) GET /products?categories=books,movies
-Debería traer solo los productos que tengan la categoría book o movies
-
-*/
-//////////////// UNIT TESTING //////////////////////
 /*"test": "mocha ./server/test/Category.spec.js --reporter spec"*/
 
-const { expect } = require('chai')
+//////////////// UNIT TESTING //////////////////////
 
+const { expect } = require('chai')
 
 const {
     sequelize,
@@ -31,7 +24,9 @@ const {
         expect(Product_instance).to.be.an('object');
         expect(Product_instance).to.have.property('name');
         expect(Product_instance).to.have.property('price');
+        expect(Product_instance).to.have.property('currency');
         expect(Product_instance).to.have.property('description');
+        expect(Product_instance).to.have.property('available');
     })
 
     it('Product | truncateDescription | .. OK ..', () => {
@@ -40,6 +35,10 @@ const {
 
     it('Product | hook | beforeCreate | .. OK ..', () => {
         expect(Product_instance.hooks["beforeCreate"]).to.be.a('function')
+    })
+
+    it('Product | hook | beforeUpdate | .. OK ..', () => {
+        expect(Product_instance.hooks["beforeUpdate"]).to.be.a('function')
     })
 
 
@@ -66,8 +65,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 chai.use(chaiHttp);
 
-//const api_url = "https://backend-test-p5.herokuapp.com";
-const api_url = "http://localhost:8000";
+const api_url = "https://backend-test-p5.herokuapp.com";
+//const api_url = "http://localhost:8000";
 
     it('CRUD | GET /products | .. OK ..', function(done) { // <= Pass in done callback
         //const app = require('../../app');
@@ -89,6 +88,7 @@ const api_url = "http://localhost:8000";
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.property('name');
             expect(res.body).to.have.property('price');
+            expect(res.body).to.have.property('currency');
             expect(res.body).to.have.property('description');
             expect(res.body).to.have.property('available');
             expect(res.body).to.have.property('categories');
@@ -104,6 +104,7 @@ const api_url = "http://localhost:8000";
         .send({
             name: 'Avengers Infinity',
             price: 1000,
+            currency: 'ARS',
             description: 'The last Avenger Movie soon..',
             available: true,
         })
@@ -113,10 +114,12 @@ const api_url = "http://localhost:8000";
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.property('name');
             expect(res.body).to.have.property('price');
+            expect(res.body).to.have.property('currency');
             expect(res.body).to.have.property('description');
             expect(res.body).to.have.property('available');
             expect(res.body.name).to.equal('Avengers Infinity');
             expect(res.body.price).to.equal(1000);
+            expect(res.body.currency).to.equal('ARS');
             expect(res.body.description).to.equal('The last Avenger Movie soon..');
             expect(res.body.available).to.equal(true);
             done();// <= Call done to signal callback end
@@ -130,6 +133,7 @@ const api_url = "http://localhost:8000";
         .send({
             name: "Poet Marine New",
             price: 100,
+            currency: 'ARS',
             description: "Smeell Air Marine New",
             available: true,
         })
@@ -138,6 +142,7 @@ const api_url = "http://localhost:8000";
             expect(res.body).to.be.an('object');
             expect(res.body).to.have.property('name');
             expect(res.body).to.have.property('price');
+            expect(res.body).to.have.property('currency');
             expect(res.body).to.have.property('description');
             expect(res.body).to.have.property('available');
             expect(res.body.name).to.equal('Poet Marine New');

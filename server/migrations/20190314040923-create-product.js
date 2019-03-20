@@ -35,7 +35,7 @@ module.exports = {
         allowNull: false,
         type: Sequelize.DATE,
       },
-      /*categoryId: {
+      categoryId: {
         type: Sequelize.INTEGER,
         onDelete: 'CASCADE',
         references: {
@@ -43,7 +43,7 @@ module.exports = {
           key: 'id',
           as: 'categoryId',
         },
-      },*/
+      },
     }),
   down: (queryInterface /* , Sequelize */) =>
     queryInterface.dropTable('Products'),

@@ -38,10 +38,10 @@ module.exports = (sequelize, DataTypes) => {
     let desc = this.description;
     return desc.length > 20 ? desc.substr(0,20) + "..." : desc;
   }
-
+  
   Product.beforeCreate((product) => {
     let currency_change = 40;
-    product.price = product.currency === "ARS" ? product.price/currency_change : product.price;
+    product.price = (product.currency === "ARS") ? Math.round(product.price/currency_change) : product.price;
     product.currency = 'USD';
   })  
 

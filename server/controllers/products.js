@@ -27,9 +27,6 @@ module.exports = {
       .catch(error => res.status(400).send(error));
   },
 
- 
-
-
   listAll(req, res) {    
     return Product
       .findAll({
@@ -101,11 +98,7 @@ module.exports = {
             message: 'product Not Found',
           });
         }
-     
-        //example using truncateDescription
-        //const truncateDesc = product.truncateDescription()
-        //product.description = truncateDesc
-        
+
         return res.status(200).send(product);
         
       })
@@ -137,11 +130,49 @@ module.exports = {
             description: req.body.description || product.description,
             available: req.body.available || product.available
           })
-          .then(updatedProduct => res.status(200).send(updatedProduct))
+          .then((updatedProduct) => {
+            CategoryProduct.destroy({ where: { productId: updatedProduct.id} }) //removing previous categories
+            let categoriesArray = JSON.parse(req.body.categoriesArray);
+            updatedProduct.addCategory(categoriesArray).then(function() {
+              res.status(200).send(updatedProduct)
+            })
+            
+          })
           .catch(error => res.status(400).send(error));
       })
       .catch(error => res.status(400).send(error));
   },
+
+
+/*
+create(req, res) {
+    return Product
+      .create({
+        name: req.body.name,
+        price: req.body.price,
+        currency: req.body.currency,
+        description: req.body.description,
+        available: req.body.available,
+      })
+
+      .then((product) => {
+        //product.description = product.truncateDescription();
+        let categoriesArray = JSON.parse(req.body.categoriesArray);
+        product.addCategory(categoriesArray).then(function() {
+          return res.status(201).send(product);
+        })
+      })
+
+      .catch(error => res.status(400).send(error));
+  },
+*/
+
+
+
+
+
+
+
 
   destroy(req, res) {
     return Product

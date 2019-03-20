@@ -33,7 +33,7 @@ module.exports = (sequelize, DataTypes) => {
     });
   };
 
-  // instance methods 
+  
   Product.prototype.truncateDescription = function() {
     let desc = this.description;
     return desc.length > 20 ? desc.substr(0,20) + "..." : desc;

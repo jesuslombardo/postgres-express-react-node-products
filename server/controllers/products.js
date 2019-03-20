@@ -49,6 +49,12 @@ module.exports = {
     let whereStatement = {} 
     if(Object.keys(req.query).length > 0){
       let queryCategories = req.query.categories.toString().split(",")
+  
+      //normalice upper and lowercase in query
+      queryCategories = queryCategories.map(function(category, index, array){
+        return category.charAt(0).toUpperCase() + category.substr(1);
+      });
+
       whereStatement = {name: {
         [op.or]: queryCategories
       }};
@@ -142,37 +148,6 @@ module.exports = {
       })
       .catch(error => res.status(400).send(error));
   },
-
-
-/*
-create(req, res) {
-    return Product
-      .create({
-        name: req.body.name,
-        price: req.body.price,
-        currency: req.body.currency,
-        description: req.body.description,
-        available: req.body.available,
-      })
-
-      .then((product) => {
-        //product.description = product.truncateDescription();
-        let categoriesArray = JSON.parse(req.body.categoriesArray);
-        product.addCategory(categoriesArray).then(function() {
-          return res.status(201).send(product);
-        })
-      })
-
-      .catch(error => res.status(400).send(error));
-  },
-*/
-
-
-
-
-
-
-
 
   destroy(req, res) {
     return Product

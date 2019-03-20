@@ -1,6 +1,5 @@
 const categoriesController = require('../controllers').categories;
 const productsController = require('../controllers').products;
-const pivotController = require('../controllers').pivot;
 
 module.exports = (app) => {
 
@@ -44,11 +43,4 @@ module.exports = (app) => {
 
   //delete a category by id
   app.delete('/categories/:categoryId', categoriesController.destroy);
-
-  //creating pivot table
-  app.post('/pivot',pivotController.create);
-
-  //get pivot table
-  app.get('/pivot',pivotController.list);
-
 };
